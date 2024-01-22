@@ -66,13 +66,17 @@ function date_conversion(){
     date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
     console.log(date_arg); 
 
-    const date_obj = new Date(date_arg);  
-    const date_string = ""; 
+    date_obj = new Date(date_arg);  
+    date_string = ""; 
     // In the date object, Month is 0 indexed, Hours, Sec, Min all start at 0. 
 
     month = find_month(date_obj.getMonth()); 
+    time_range = find_time_range(date_obj.getHours()); 
+    hour = calc_hour(date_obj.getHours()); 
+
+
     date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at "; 
-    
+    console.log(date_string); 
     
 
      
@@ -124,6 +128,24 @@ function find_month(num){
 
 }
 
+function find_time_range(num){
+    if (num >= 12){
+        return "PM"; 
+    } 
+
+    return "AM"; 
+}
+
+function calc_hour(num){
+    if (num == 0){
+        return 12; 
+    }
+    if (num > 12){
+        return (num - 12); 
+    }
+
+    return num; 
+}
 
 
 /**
