@@ -4,7 +4,7 @@ const readline = require('node:readline').createInterface({
   });
   
 date_input = "";  
-is_valid_format = true; 
+is_valid_format = false; 
 
 function get_date(){
     readline.question(`Enter a date of the format YYYYMMDDTHHMMSS: `, full_date => {
@@ -36,15 +36,44 @@ function check_input_date(check_date){
     return matched; 
 }
 
-function date_conversion(){
-    date_info = date_input.substring(0, 8); // All of the data before the 'T', represents the date
-    time_info = date_input.substring(9); // All of the data after the 'T', represents the time
 
-    console.log(date_info); // delete later
-    console.log(time_info); // delete later
+function date_conversion(){
+    year = date_split(date_input).year;
+    month = date_split(date_input).month;
+    day = date_split(date_input).day;
+    hour = date_split(date_input).hour;
+    min = date_split(date_input).min;
+    sec = date_split(date_input).sec;
+
+    date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
+    console.log(date_arg); 
 
 }
 
+function date_split(cmd_input){
+    date_info = cmd_input.substring(0, 8); // All of the data before the 'T', represents the date
+    time_info = cmd_input.substring(9); // All of the data after the 'T', represents the time
+
+    year = date_info.substring(0, 4); 
+    month = date_info.substring(4, 6); 
+    day = date_info.substring(6); 
+
+    hour = time_info.substring(0, 2); 
+    min = time_info.substring(2, 4); 
+    sec = time_info.substring(4); 
+
+    return {
+        year: year,
+        month: month,
+        day: day,
+        hour: hour,
+        min: min,
+        sec: sec
+    };
+
+}
+
+
 get_date(); 
 
-// Example input to use: 11110011T110011
+// Example input to use: 20031105T225911 = November 5, 2003, at 10:59:11 PM 
