@@ -1,3 +1,8 @@
+// STUFF TO DO
+// will need to check for date validity before doing all the conversions
+// so it needs to be checked at the same time as input redos
+
+
 /**
  * Sets-up the input and output processing from the command line. 
  */
@@ -48,7 +53,7 @@ function check_input_date(check_date){
 }
 
 /**
- * Converts the date from command line input to a Date object. 
+ * Creating a Date object from the command line input. 
  */
 function date_conversion(){
     year = date_split(date_input).year;
@@ -61,9 +66,30 @@ function date_conversion(){
     date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
     console.log(date_arg); 
 
-    const date_obj = new Date(date_arg); 
+    const date_obj = new Date(date_arg);  
+    // In the date object, Month is 0 indexed, Hours, Sec, Min all start at 0. 
+
+    month = findMonth(date_obj.getMonth()); 
+}
+
+function findMonth(num){
+
+    switch (num){
+        case 0:
+            return "January"; 
+            break; 
+        case 1: 
+            return "February"; 
+            break; 
+        case 2: 
+            return "March"; 
+            break; 
+
+    }
 
 }
+
+
 
 /**
  * Splits the date apart into year, month, day, hour, minute, and second. 
