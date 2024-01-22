@@ -1,8 +1,3 @@
-// STUFF TO DO
-// will need to check for date validity before doing all the conversions
-// so it needs to be checked at the same time as input redos
-// if it's 00 for minute or second, don't include it (except for the hour)
-
 /**
  * Sets-up the input and output processing from the command line. 
  */
@@ -68,20 +63,12 @@ function date_conversion(){
 
     date_obj = new Date(date_arg);  
     date_string = ""; 
-    // In the date object, Month is 0 indexed, Hours, Sec, Min all start at 0. 
 
     month = find_month(date_obj.getMonth()); 
     time_range = find_time_range(date_obj.getHours()); 
     hour = calc_hour(date_obj.getHours()); 
     min = calc_min(date_obj.getMinutes()); 
     sec = calc_sec(date_obj.getSeconds()); 
-
-    // console.log("hour", hour); 
-    // console.log("time range", time_range); 
-    // console.log("min", min);
-    // console.log("sec", sec); 
-
-
 
     date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at " + hour + min + sec + " " + time_range; 
     console.log(date_string); 
@@ -137,6 +124,11 @@ function find_month(num){
 
 }
 
+/**
+ * Maps Date object's numbers to AM/PM. 
+ * @param {} num The value of the hour in the Date object. 
+ * @returns AM/PM depending on the hour. 
+ */
 function find_time_range(num){
     if (num >= 12){
         return "PM"; 
@@ -145,6 +137,11 @@ function find_time_range(num){
     return "AM"; 
 }
 
+/**
+ * Transforms 24 hour format to 12 hour format. 
+ * @param {} num The value of the hour in the Date object.
+ * @returns The 12 hour format time.
+ */
 function calc_hour(num){
     if (num == 0){
         return 12; 
@@ -156,6 +153,11 @@ function calc_hour(num){
     return num; 
 }
 
+/**
+ * Formats the string for the minutes.
+ * @param {} num The value of the minutes in the Date object.
+ * @returns Formatted output for the minutes.
+ */
 function calc_min(num){
     if (num == 0){
         return ""; 
@@ -163,6 +165,11 @@ function calc_min(num){
     return ":" + num; 
 }
 
+/**
+ * Formats the string for the seconds.
+ * @param {} num The value of the seconds in the Date object.
+ * @returns Formatted output for the seconds.
+ */
 function calc_sec(num){
     if (num == 0){
         return ""; 
