@@ -1,7 +1,7 @@
 // STUFF TO DO
 // will need to check for date validity before doing all the conversions
 // so it needs to be checked at the same time as input redos
-
+// if it's 00 for minute or second, don't include it (except for the hour)
 
 /**
  * Sets-up the input and output processing from the command line. 
@@ -73,11 +73,20 @@ function date_conversion(){
     month = find_month(date_obj.getMonth()); 
     time_range = find_time_range(date_obj.getHours()); 
     hour = calc_hour(date_obj.getHours()); 
+    min = calc_min(date_obj.getMinutes()); 
+    sec = calc_sec(date_obj.getSeconds()); 
+
+    console.log("hour", hour); 
+    console.log("time range", time_range); 
+    console.log("min", min);
+    console.log("sec", sec); 
+
 
 
     date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at "; 
     console.log(date_string); 
     
+
 
      
 }
@@ -147,6 +156,20 @@ function calc_hour(num){
     return num; 
 }
 
+function calc_min(num){
+    if (num == 0){
+        return ""; 
+    } 
+    return ":" + num; 
+}
+
+function calc_sec(num){
+    if (num == 0){
+        return ""; 
+    } 
+    return ":" + num; 
+}
+
 
 /**
  * Splits the date apart into year, month, day, hour, minute, and second. 
@@ -180,3 +203,5 @@ function date_split(cmd_input){
 get_date(); 
 
 // Example input to use: 20031105T225911 = November 5, 2003, at 10:59:11 PM 
+// 20101213T001500 = December 13, 2010, at 12:15 AM 
+// 20101213T000000 = December 13, 2010, at 12 AM
