@@ -1,3 +1,6 @@
+/**
+ * Sets-up the input and output processing from the command line. 
+ */
 const readline = require('node:readline').createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -6,6 +9,9 @@ const readline = require('node:readline').createInterface({
 date_input = "";  
 is_valid_format = false; 
 
+/**
+ * Reads input from the command line. 
+ */
 function get_date(){
     readline.question(`Enter a date of the format YYYYMMDDTHHMMSS: `, full_date => {
         is_valid_format = check_input_date(full_date);  
@@ -21,6 +27,11 @@ function get_date(){
     });
 }   
 
+/**
+ * Determines if the entered date is of the correct format. 
+ * @param {*} check_date The date entered by the user.  
+ * @returns True if the date is valid, false otherwise. 
+ */
 function check_input_date(check_date){
     matched = false; 
     // YYYY MM DD T HH MM SS
@@ -36,7 +47,9 @@ function check_input_date(check_date){
     return matched; 
 }
 
-
+/**
+ * Converts the date from command line input to a Date object. 
+ */
 function date_conversion(){
     year = date_split(date_input).year;
     month = date_split(date_input).month;
@@ -48,8 +61,15 @@ function date_conversion(){
     date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
     console.log(date_arg); 
 
+    const date_obj = new Date(date_arg); 
+
 }
 
+/**
+ * Splits the date apart into year, month, day, hour, minute, and second. 
+ * @param {} cmd_input The date entered by the user. 
+ * @returns The different components of the date (such as, year, month, etc.). 
+ */
 function date_split(cmd_input){
     date_info = cmd_input.substring(0, 8); // All of the data before the 'T', represents the date
     time_info = cmd_input.substring(9); // All of the data after the 'T', represents the time
