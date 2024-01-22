@@ -67,13 +67,23 @@ function date_conversion(){
     console.log(date_arg); 
 
     const date_obj = new Date(date_arg);  
+    const date_string = ""; 
     // In the date object, Month is 0 indexed, Hours, Sec, Min all start at 0. 
 
-    month = findMonth(date_obj.getMonth()); 
+    month = find_month(date_obj.getMonth()); 
+    date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at "; 
+    
+    
+
+     
 }
 
-function findMonth(num){
-
+/**
+ * Maps Date object's numbers to month string. 
+ * @param {} num The value of the month in the Date object. 
+ * @returns The full name of the month. 
+ */
+function find_month(num){
     switch (num){
         case 0:
             return "January"; 
@@ -84,7 +94,32 @@ function findMonth(num){
         case 2: 
             return "March"; 
             break; 
-
+        case 3:
+            return "April";
+            break;
+        case 4: 
+            return "May";
+            break; 
+        case 5: 
+            return "June"; 
+            break; 
+        case 6: 
+            return "July"; 
+            break; 
+        case 7:
+            return "August"; 
+            break; 
+        case 8:
+            return "September";
+            break;
+        case 9: 
+            return "October"; 
+            break;
+        case 10:
+            return "November"; 
+            break;
+        default:
+            return "December";
     }
 
 }
