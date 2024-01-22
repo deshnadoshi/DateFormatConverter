@@ -76,14 +76,14 @@ function date_conversion(){
     min = calc_min(date_obj.getMinutes()); 
     sec = calc_sec(date_obj.getSeconds()); 
 
-    console.log("hour", hour); 
-    console.log("time range", time_range); 
-    console.log("min", min);
-    console.log("sec", sec); 
+    // console.log("hour", hour); 
+    // console.log("time range", time_range); 
+    // console.log("min", min);
+    // console.log("sec", sec); 
 
 
 
-    date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at "; 
+    date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at " + hour + min + sec + " " + time_range; 
     console.log(date_string); 
     
 
@@ -202,6 +202,7 @@ function date_split(cmd_input){
 
 get_date(); 
 
-// Example input to use: 20031105T225911 = November 5, 2003, at 10:59:11 PM 
+// Example inputs: 
+// 20031105T225911 = November 5, 2003, at 10:59:11 PM 
 // 20101213T001500 = December 13, 2010, at 12:15 AM 
 // 20101213T000000 = December 13, 2010, at 12 AM
