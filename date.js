@@ -75,12 +75,14 @@ function check_valid_date(check_date){
 
 
     if (match_month(year, month, day) == false){
+        // Checks if the month matches the month
+        is_valid_date = false; 
         log_message += "This is an invalid day. ";
     }
 
-    is_valid_date = match_month(year, month, day); // Does the month match with the number of days
     
     console.log(log_message); 
+    
     return is_valid_date; 
 
 }
@@ -313,6 +315,7 @@ function date_split(cmd_input){
 
 get_date(); 
 console.log(log_message); 
+log_message = ""; 
 
 
 
