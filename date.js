@@ -28,9 +28,14 @@ function get_date(){
             if (is_valid_format){
                 // Can do all of the date checks here, then need to put the below in an if-statement
                 date_validity = check_valid_date(full_date); 
-                date_input = full_date; 
-                readline.pause();
-                date_conversion();
+                if (date_validity){
+                    date_input = full_date; 
+                    readline.pause();
+                    date_conversion();
+                } else {
+                    get_date(); 
+                }
+                
             } else {
                 get_date(); 
             } 
@@ -53,24 +58,71 @@ function check_valid_date(check_date){
 
     // Check for year. 
     if (year < 1900){
-        log_message += "This is an unusually old date."; 
+        log_message += "This is an unusually old date. "; 
     } else if (year > 2100){
-        log_message += "This is an unusually future date."; 
+        log_message += "This is an unusually future date. "; 
     }
 
     // Check for month and day. 
     if (month > 12 || month < 1){
+        log_message += "This is an invalid month. "; 
         is_valid_date = false; 
     }
 
-    if (day > 31 || day < 1){
+    if (day > 31 || day < 1){ 
         is_valid_date = false; // Basic check for date range (need to implement check for specific days)
     }
 
 
+    if (match_month(year, month, day) == false){
+        log_message += "This is an invalid day. ";
+    }
+
+    is_valid_date = match_month(year, month, day); // Does the month match with the number of days
+    
     console.log(log_message); 
     return is_valid_date; 
 
+}
+
+function match_month(year_num, month_num, days_num){
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
+        if (days_num > 31 || days_num <= 0){
+            return false; 
+        }
+    } else if (month == 4 || month == 6 || month == 9 || month == 11){
+        if (days_num > 30 || days_num <= 0){
+            return false; 
+        }
+    } else if (month == 2){
+        if (is_leap_year(year_num)){ // If February is a leap year, the days should be less than 29
+            if (days_num > 29 || days_num < 0){
+                return false; 
+            }
+        } else {
+            if (days_num > 28 || days_num < 0){
+                return false; 
+            }
+        }
+    }
+
+    return true; 
+}
+
+function is_leap_year (year_num){
+    if (year_num % 4 == 0){
+        if (year_num % 100 == 0){
+            if (year_num % 400 == 0){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
@@ -261,7 +313,6 @@ function date_split(cmd_input){
 
 get_date(); 
 console.log(log_message); 
-log_message = ""; 
 
 
 
