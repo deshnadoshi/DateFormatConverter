@@ -26,6 +26,7 @@ function get_date(){
 
             if (is_valid_format){
                 // Can do all of the date checks here, then need to put the below in an if-statement
+                check_valid_date(full_date); 
                 date_input = full_date; 
                 readline.pause();
                 date_conversion();
@@ -41,19 +42,24 @@ function get_date(){
 function check_valid_date(check_date){
     is_valid_date = false; // Assuming the format is valid, we can split up the date
 
-    year = parseInt(date_split(check_date).year);
-    month = parseInt(date_split(check_date).month);
-    day = parseInt(date_split(check_date).day);
-    hour = parseInt(date_split(check_date).hour);
-    min = parseInt(date_split(check_date).min);
-    sec = parseInt(date_split(check_date).sec);
+    
+    let year = parseInt(date_split(check_date).year);
+    let month = parseInt(date_split(check_date).month);
+    let day = parseInt(date_split(check_date).day);
+    let hour = parseInt(date_split(check_date).hour);
+    let min = parseInt(date_split(check_date).min);
+    let sec = parseInt(date_split(check_date).sec); 
 
-    // All of these are strings, will need to typecast to make them numbers so we can compare.
+    // Year check and message
     if (year < 1900){
-        log_message += "This is an unusually old date!"; 
+        log_message += "This is an unusually old date."; 
     } else if (year > 2100){
-        log_message += "This is an unusually future date!"; 
+        log_message += "This is an unusually future date."; 
     }
+
+
+
+    console.log(log_message); 
 
 }
 
@@ -256,3 +262,5 @@ log_message = "";
 // 20001913T292300 = Invalid
 // 18981213T000000 = December 13, 1898, at 12 AM
 // 09001213T000000 = December 13, 900, at 12 AM
+// 20230229T225911 = February 29, 2023 at 10:59:11 PM (invalid)
+// 20240229T225911 = February 29, 2024 at 10:59:11 PM 
