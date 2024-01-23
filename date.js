@@ -52,7 +52,6 @@ function get_date(){
 
 function check_valid_date(check_date){
     is_valid_date = true; // Assuming the format is valid, we can split up the date
-
     
     let year = parseInt(date_split(check_date).year);
     let month = parseInt(date_split(check_date).month);
