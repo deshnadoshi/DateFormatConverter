@@ -10,6 +10,7 @@ let date_input = "";
 let is_valid_format = false; 
 let repeat_entry = true;
 let log_message = ""; // This is to include information about the date. 
+let date_validity = false; 
 
 
 /**
@@ -26,7 +27,7 @@ function get_date(){
 
             if (is_valid_format){
                 // Can do all of the date checks here, then need to put the below in an if-statement
-                check_valid_date(full_date); 
+                date_validity = check_valid_date(full_date); 
                 date_input = full_date; 
                 readline.pause();
                 date_conversion();
@@ -40,7 +41,7 @@ function get_date(){
 }   
 
 function check_valid_date(check_date){
-    is_valid_date = false; // Assuming the format is valid, we can split up the date
+    is_valid_date = true; // Assuming the format is valid, we can split up the date
 
     
     let year = parseInt(date_split(check_date).year);
@@ -50,16 +51,25 @@ function check_valid_date(check_date){
     let min = parseInt(date_split(check_date).min);
     let sec = parseInt(date_split(check_date).sec); 
 
-    // Year check and message
+    // Check for year. 
     if (year < 1900){
         log_message += "This is an unusually old date."; 
     } else if (year > 2100){
         log_message += "This is an unusually future date."; 
     }
 
+    // Check for month and day. 
+    if (month > 12 || month < 1){
+        is_valid_date = false; 
+    }
+
+    if (day > 31 || day < 1){
+        is_valid_date = false; // Basic check for date range (need to implement check for specific days)
+    }
 
 
     console.log(log_message); 
+    return is_valid_date; 
 
 }
 
