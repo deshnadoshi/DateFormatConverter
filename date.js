@@ -1,3 +1,5 @@
+const { log } = require('node:console');
+
 /**
  * Sets-up the input and output processing from the command line. 
  */
@@ -17,6 +19,7 @@ let date_validity = false;
  * Reads input from the command line. 
  */
 function get_date(){
+    log_message = ""; 
     readline.question(`Enter a date of the format YYYYMMDDTHHMMSS (or 'Q' to quit): `, full_date => {
         if (full_date.toLowerCase() === 'q'){
             repeat_entry = false;
@@ -33,10 +36,12 @@ function get_date(){
                     readline.pause();
                     date_conversion();
                 } else {
+                    log_message = ""; 
                     get_date(); 
                 }
                 
             } else {
+                log_message = ""; 
                 get_date(); 
             } 
         }
