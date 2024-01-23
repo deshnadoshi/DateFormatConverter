@@ -8,21 +8,30 @@ const readline = require('node:readline').createInterface({
   
 date_input = "";  
 is_valid_format = false; 
+let repeat_entry = true;
+
 
 /**
  * Reads input from the command line. 
  */
 function get_date(){
-    readline.question(`Enter a date of the format YYYYMMDDTHHMMSS: `, full_date => {
-        is_valid_format = check_input_date(full_date);  
+    readline.question(`Enter a date of the format YYYYMMDDTHHMMSS (or 'Q' to quit): `, full_date => {
+        if (full_date.toLowerCase() === 'q'){
+            repeat_entry = false;
+            readline.close(); 
 
-        if (is_valid_format){
-            date_input = full_date; 
-            readline.close();
-            date_conversion();
         } else {
-            get_date(); 
-        } 
+            is_valid_format = check_input_date(full_date);  
+
+            if (is_valid_format){
+                date_input = full_date; 
+                readline.pause();
+                date_conversion();
+            } else {
+                get_date(); 
+            } 
+        }
+        
 
     });
 }   
@@ -59,7 +68,6 @@ function date_conversion(){
     sec = date_split(date_input).sec;
 
     date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
-    console.log(date_arg); 
 
     date_obj = new Date(date_arg);  
     date_string = ""; 
@@ -73,7 +81,11 @@ function date_conversion(){
     date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at " + hour + min + sec + " " + time_range; 
     console.log(date_string); 
     
-
+    if (repeat_entry) {
+        get_date();
+    } else {
+        readline.close();
+    }
 
      
 }
@@ -208,6 +220,8 @@ function date_split(cmd_input){
 
 
 get_date(); 
+
+
 
 // Example inputs: 
 // 20031105T225911 = November 5, 2003, at 10:59:11 PM 
