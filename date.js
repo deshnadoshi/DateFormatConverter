@@ -6,9 +6,10 @@ const readline = require('node:readline').createInterface({
     output: process.stdout,
   });
   
-date_input = "";  
-is_valid_format = false; 
+let date_input = "";  
+let is_valid_format = false; 
 let repeat_entry = true;
+let log_message = ""; // This is to include information about the date. 
 
 
 /**
@@ -24,7 +25,7 @@ function get_date(){
             is_valid_format = check_input_date(full_date);  
 
             if (is_valid_format){
-                // Can do all of the date checks here
+                // Can do all of the date checks here, then need to put the below in an if-statement
                 date_input = full_date; 
                 readline.pause();
                 date_conversion();
@@ -36,6 +37,25 @@ function get_date(){
 
     });
 }   
+
+function check_valid_date(check_date){
+    is_valid_date = false; // Assuming the format is valid, we can split up the date
+
+    year = parseInt(date_split(check_date).year);
+    month = parseInt(date_split(check_date).month);
+    day = parseInt(date_split(check_date).day);
+    hour = parseInt(date_split(check_date).hour);
+    min = parseInt(date_split(check_date).min);
+    sec = parseInt(date_split(check_date).sec);
+
+    // All of these are strings, will need to typecast to make them numbers so we can compare.
+    if (year < 1900){
+        log_message += "This is an unusually old date!"; 
+    } else if (year > 2100){
+        log_message += "This is an unusually future date!"; 
+    }
+
+}
 
 /**
  * Determines if the entered date is of the correct format. 
@@ -131,8 +151,11 @@ function find_month(num){
         case 10:
             return "November"; 
             break;
-        default:
+        case 11:
             return "December";
+            break; 
+        default:
+            return "";
     }
 
 }
@@ -221,6 +244,8 @@ function date_split(cmd_input){
 
 
 get_date(); 
+console.log(log_message); 
+log_message = ""; 
 
 
 
@@ -228,3 +253,6 @@ get_date();
 // 20031105T225911 = November 5, 2003, at 10:59:11 PM 
 // 20101213T001500 = December 13, 2010, at 12:15 AM 
 // 20101213T000000 = December 13, 2010, at 12 AM
+// 20001913T292300 = Invalid
+// 18981213T000000 = December 13, 1898, at 12 AM
+// 09001213T000000 = December 13, 900, at 12 AM
