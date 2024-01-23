@@ -24,6 +24,7 @@ function get_date(){
             is_valid_format = check_input_date(full_date);  
 
             if (is_valid_format){
+                // Can do all of the date checks here
                 date_input = full_date; 
                 readline.pause();
                 date_conversion();
@@ -44,7 +45,7 @@ function get_date(){
 function check_input_date(check_date){
     matched = false; 
     // YYYY MM DD T HH MM SS
-    let date_regex = /[0-9][0-9][0-9][0-9][0-1][0-9][0-2][0-9]T[0-9][0-9][0-5][0-9][0-5][0-9]/;
+    let date_regex = /[0-9][0-9][0-9][0-9][0-1][0-9][0-2][0-9]T[0-2][0-9][0-5][0-9][0-5][0-9]/;
     if (date_regex.test(check_date)){
         matched = true; 
     }
