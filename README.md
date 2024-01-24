@@ -20,11 +20,11 @@ i.e. 20230124T023900 will be January 24, 2023, at 2:39 AM
 
 i.e. 20230124T020000 will be January 24, 2023, at 2 AM
 
-i.e. 20230124T020016 will be January 24, 2023, at 2:00:16 AM
+i.e. 20230124T020016 will be January 24, 2023, at 2:00:16 AM  
 
+  
 
-
-Leading zeros in years or single-digit days are truncated. 
+Leading zeros in years or days are truncated. 
 
 i.e. 08920124T023900 will be January 24, 892, at 2:39 AM
 
