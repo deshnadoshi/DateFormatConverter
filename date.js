@@ -1,3 +1,9 @@
+/**
+ * date.js Assignment File
+ * @author Deshna Doshi
+ */
+
+
 const { log } = require('node:console');
 
 /**
@@ -62,15 +68,16 @@ function check_valid_date(check_date){
     let sec = parseInt(date_split(check_date).sec); 
 
     // Check for year. 
-    if (year < 1900){
-        log_message += "This is an unusually old date. "; 
-    } else if (year > 2100){
-        log_message += "This is an unusually future date. "; 
-    }
+    
+    // if (year < 1900){
+    //     log_message += "This is an unusually old date. "; 
+    // } else if (year > 2100){
+    //     log_message += "This is an unusually future date. "; 
+    // }
 
     // Check for month and day. 
     if (month > 12 || month < 1){
-        log_message += "This is an invalid month. "; 
+        log_message = "This is an invalid date. "; 
         is_valid_date = false; 
     }
 
@@ -82,7 +89,7 @@ function check_valid_date(check_date){
     if (match_month(year, month, day) == false){
         // Checks if the month matches the month
         is_valid_date = false; 
-        log_message += "This is an invalid day. ";
+        log_message = "This is an invalid date. ";
     }
 
     
@@ -146,6 +153,7 @@ function check_input_date(check_date){
     }
 
     if (!matched){
+        log_message = "This is an invalid date. "; 
         console.log("Please enter a valid date."); 
     }
 
@@ -156,6 +164,10 @@ function check_input_date(check_date){
  * Creating a Date object from the command line input. 
  */
 function date_conversion(cmd_input){
+
+    if (!check_valid_date(cmd_input) || !check_input_date(cmd_input)){
+        return log_message; 
+    }
 
     date_info = cmd_input.substring(0, 8); // All of the data before the 'T', represents the date
     time_info = cmd_input.substring(9); // All of the data after the 'T', represents the time
@@ -183,13 +195,13 @@ function date_conversion(cmd_input){
     month = find_month(date_obj.getMonth()); 
     time_range = find_time_range(date_obj.getHours()); 
     hour = calc_hour(date_obj.getHours()); 
-    min = calc_min(date_obj.getMinutes()); 
+    min = calc_min(date_obj.getMinutes(), date_obj.getSeconds()); 
     sec = calc_sec(date_obj.getSeconds()); 
 
     date_string = month + " " + date_obj.getDate() + ", " + date_obj.getFullYear() + ", at " + hour + min + sec + " " + time_range; 
     console.log(date_string); 
     
-    if (repeat_entry) {
+    if (repeat_entry) { 
         get_date();
     } else {
         readline.close();
@@ -282,10 +294,10 @@ function calc_hour(num){
  * @param {} num The value of the minutes in the Date object.
  * @returns Formatted output for the minutes.
  */
-function calc_min(num){
-    if (num == 0){
+function calc_min(num, seconds){
+    if (num == 0 && seconds == 0){
         return ""; 
-    } 
+    }
     return ":" + num; 
 }
 
@@ -330,12 +342,12 @@ function date_split(cmd_input){
 
 }
 
-
 get_date(); 
 console.log(log_message); 
 log_message = ""; 
 
 
+module.exports = { date_conversion };
 
 // Example inputs: 
 // 20031105T225911 = November 5, 2003, at 10:59:11 PM 
@@ -347,3 +359,4 @@ log_message = "";
 // 20230229T225911 = February 29, 2023 at 10:59:11 PM (invalid)
 // 20240229T225911 = February 29, 2024 at 10:59:11 PM 
 // 21021105T225911 = November 5, 2102, at 10:59:11 PM (future)
+// 20230227T120011 = February 27, 2023, at 12:00:11 PM (this might be an issue)  
