@@ -297,6 +297,8 @@ function calc_hour(num){
 function calc_min(num, seconds){
     if (num == 0 && seconds == 0){
         return ""; 
+    } else if (num == 0){
+        return ":0" + num; 
     }
     return ":" + num; 
 }

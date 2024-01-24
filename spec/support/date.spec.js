@@ -51,12 +51,37 @@ describe ('Date Converter', () => {
     });
 
     // Test Case 6:The maximum number of days can only be 31 for the following months: Jan, Mar, May, Jul, Aug, Oct, Dec.
-    it ('should not accept a month without 31 days to have 31 days', () => {
-        const test_date = "18980931T000000"; 
+    it ('should not accept a month with 31 days to have more than 31 days', () => {
+        const test_date = "18980332T000000"; 
         const result = date_conversion(test_date); 
 
         expect(result).toBe("This is an invalid date. "); 
     });
+
+    // Test Case 7: The maximum number of days can only be 30 for the following months: Apr, Jun, Sep, Nov.
+    it ('should not accept a month with 30 days to have more than 30 days', () => {
+        const test_date = "09000931T000000"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("This is an invalid date. "); 
+    });
+
+    // Test Case 8: An unusually old, but valid date should be recognized and converted.
+    it ('should accept an unusually old, but valid date', () => {
+        const test_date = "09001213T000000"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("December 13, 900, at 12 AM"); 
+    });
+
+    // Test Case 9: An unusually future, but valid date should be recognized and converted.
+    it ('should accept an unusually future, but valid date', () => {
+        const test_date = "21021105T210030"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("November 5, 2102, at 9:00:30 PM"); 
+    });
+
 
 
 })
