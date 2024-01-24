@@ -1,0 +1,14 @@
+{
+  "name": "software-engineering-assignment-1",
+  "version": "1.0.0",
+  "description": "Software Engineering Assignment 1, Due 1/29/2024",
+  "main": "date.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Deshna Doshi",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^5.1.0"
+  }
+}
