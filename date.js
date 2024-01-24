@@ -57,6 +57,12 @@ function get_date(){
     });
 }   
 
+/**
+ * Determines if the chosen date and time is valid. 
+ * Checks for maximum and minimum possible values of each field. 
+ * @param {} check_date The date inputted by the user. 
+ * @returns True if the date is valid, false otherwise. 
+ */
 function check_valid_date(check_date){
     is_valid_date = true; // Assuming the format is valid, we can split up the date
     
@@ -107,13 +113,20 @@ function check_valid_date(check_date){
         log_message = "This is an invalid date. "; 
     }
 
-    
     console.log(log_message); 
     
     return is_valid_date; 
 
 }
 
+/**
+ * Determines if the number of days matches the month. 
+ * For example, if the month is January, the maximum number of days it can have is 31. 
+ * @param {*} year_num The value of the year. 
+ * @param {*} month_num The value of the monht. 
+ * @param {*} days_num The value of the day. 
+ * @returns 
+ */
 function match_month(year_num, month_num, days_num){
     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12){
         if (days_num > 31 || days_num <= 0){
@@ -138,6 +151,11 @@ function match_month(year_num, month_num, days_num){
     return true; 
 }
 
+/**
+ * Determines if a given year is a leap year. 
+ * @param {} year_num The value of the year. 
+ * @returns True if the given year is a leap year, false otherwise. 
+ */
 function is_leap_year (year_num){
     if (year_num % 4 == 0){
         if (year_num % 100 == 0){
