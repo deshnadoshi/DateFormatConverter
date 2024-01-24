@@ -82,6 +82,39 @@ describe ('Date Converter', () => {
         expect(result).toBe("November 5, 2102, at 9:00:30 PM"); 
     });
 
+    // Test Case 10: A negative date is not acceptable. 
+    it ('should not accept a negative date', () => {
+        const test_date = "-20230227T120011"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("This is an invalid date. "); 
+    });
+
+    // Test Case 11: An hour value above 24 should be invalid. 
+    it ('should not accept an hour value greater than 23', () => {
+        const test_date = "20031105T255911"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("This is an invalid date. "); 
+    });
+
+    // Test Case 12: A minute value above 59 should be invalid. 
+    it ('should not accept an minutes value greater than 59', () => {
+        const test_date = "20031105T226011"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("This is an invalid date. "); 
+    });
+
+    // Test Case 13: A second value above 59 should be invalid. 
+    it ('should not accept an seconds value greater than 59', () => {
+        const test_date = "20031105T225971"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("This is an invalid date. "); 
+    });
+
+
 
 
 })

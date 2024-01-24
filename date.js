@@ -92,6 +92,21 @@ function check_valid_date(check_date){
         log_message = "This is an invalid date. ";
     }
 
+    if (hour > 23 || hour < 0){
+        is_valid_date = false; 
+        log_message = "This is an invalid date. "; 
+    }
+
+    if (min > 59 || min < 0){
+        is_valid_date = false; 
+        log_message = "This is an invalid date. "; 
+    }
+
+    if (sec > 59 || sec < 0){
+        is_valid_date = false; 
+        log_message = "This is an invalid date. "; 
+    }
+
     
     console.log(log_message); 
     
@@ -154,7 +169,7 @@ function check_input_date(check_date){
 
     if (!matched){
         log_message = "This is an invalid date. "; 
-        console.log("Please enter a valid date."); 
+        console.log(log_message); 
     }
 
     return matched; 
@@ -352,6 +367,7 @@ log_message = "";
 module.exports = { date_conversion };
 
 // Example inputs: 
+// Date examples
 // 20031105T225911 = November 5, 2003, at 10:59:11 PM 
 // 20101213T001500 = December 13, 2010, at 12:15 AM 
 // 20101213T000000 = December 13, 2010, at 12 AM
@@ -362,3 +378,8 @@ module.exports = { date_conversion };
 // 20240229T225911 = February 29, 2024 at 10:59:11 PM 
 // 21021105T225911 = November 5, 2102, at 10:59:11 PM (future)
 // 20230227T120011 = February 27, 2023, at 12:00:11 PM (this might be an issue)  
+
+// Time examples
+// 20031105T255911 = invalid (hour)
+// 20031105T226011 = invalid (min)
+// 20031105T225971 = invalid (sec) 
