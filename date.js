@@ -13,6 +13,7 @@ let is_valid_format = false;
 let repeat_entry = true;
 let log_message = ""; // This is to include information about the date. 
 let date_validity = false; 
+let final_string = ""; 
 
 
 /**
@@ -34,7 +35,7 @@ function get_date(){
                 if (date_validity){
                     date_input = full_date; 
                     readline.pause();
-                    date_conversion();
+                    final_string = date_conversion(date_input);
                 } else {
                     log_message = ""; 
                     get_date(); 
@@ -154,13 +155,25 @@ function check_input_date(check_date){
 /**
  * Creating a Date object from the command line input. 
  */
-function date_conversion(){
-    year = date_split(date_input).year;
-    month = date_split(date_input).month;
-    day = date_split(date_input).day;
-    hour = date_split(date_input).hour;
-    min = date_split(date_input).min;
-    sec = date_split(date_input).sec;
+function date_conversion(cmd_input){
+
+    date_info = cmd_input.substring(0, 8); // All of the data before the 'T', represents the date
+    time_info = cmd_input.substring(9); // All of the data after the 'T', represents the time
+
+    year = date_info.substring(0, 4); 
+    month = date_info.substring(4, 6); 
+    day = date_info.substring(6); 
+
+    hour = time_info.substring(0, 2); 
+    min = time_info.substring(2, 4); 
+    sec = time_info.substring(4);
+
+    // year = date_split(date_input).year;
+    // month = date_split(date_input).month;
+    // day = date_split(date_input).day;
+    // hour = date_split(date_input).hour;
+    // min = date_split(date_input).min;
+    // sec = date_split(date_input).sec;
 
     date_arg = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec; 
 
@@ -182,6 +195,7 @@ function date_conversion(){
         readline.close();
     }
 
+    return date_string; 
      
 }
 
@@ -328,7 +342,8 @@ log_message = "";
 // 20101213T001500 = December 13, 2010, at 12:15 AM 
 // 20101213T000000 = December 13, 2010, at 12 AM
 // 20001913T292300 = Invalid
-// 18981213T000000 = December 13, 1898, at 12 AM
-// 09001213T000000 = December 13, 900, at 12 AM
+// 18981213T000000 = December 13, 1898, at 12 AM (old)
+// 09001213T000000 = December 13, 900, at 12 AM (old)
 // 20230229T225911 = February 29, 2023 at 10:59:11 PM (invalid)
 // 20240229T225911 = February 29, 2024 at 10:59:11 PM 
+// 21021105T225911 = November 5, 2102, at 10:59:11 PM (future)
