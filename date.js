@@ -27,7 +27,7 @@ let final_string = "";
  */
 function get_date(){
     log_message = ""; 
-    readline.question(`Enter a date of the format YYYYMMDDTHHMMSS (or 'Q' to quit): `, full_date => {
+    readline.question(`\n\nEnter a date of the format YYYYMMDDTHHMMSS (or 'Q' to quit): `, full_date => {
         if (full_date.toLowerCase() === 'q'){
             repeat_entry = false;
             readline.close(); 
