@@ -1,5 +1,5 @@
 # ECE452: Software Engineering Assignment 1
-
+#### Deshna Doshi, dd1035, 206009273
 ### Algorithm Design Description: 
 
 1. Test methods in **date.spec.js** contain comments regarding description of test case. Functions in **date.js** contain comments regarding functionality. 
