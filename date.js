@@ -380,6 +380,6 @@ module.exports = { date_conversion };
 // 20230227T120011 = February 27, 2023, at 12:00:11 PM (this might be an issue)  
 
 // Time examples
-// 20031105T255911 = invalid (hour)
-// 20031105T226011 = invalid (min)
-// 20031105T225971 = invalid (sec) 
+// 20031105T255911 = Invalid (hours)
+// 20031105T226011 = Invalid (mins)
+// 20031105T225971 = Invalid (secs) 

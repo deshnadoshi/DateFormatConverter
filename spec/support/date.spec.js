@@ -114,8 +114,13 @@ describe ('Date Converter', () => {
         expect(result).toBe("This is an invalid date. "); 
     });
 
+    // Test Case 14: A time at the end of the day should be valid. 
+    it ('should accept a timing that is at the furthest end of the day', () => {
+        const test_date = "20061002T235959"; 
+        const result = date_conversion(test_date); 
 
-
+        expect(result).toBe("October 2, 2006, at 11:59:59 PM"); 
+    });
 
 })
 
