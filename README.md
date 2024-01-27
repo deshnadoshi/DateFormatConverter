@@ -35,6 +35,8 @@ i.e. 08920124T023900 will be January 24, 892, at 2:39 AM
 
 i.e. 20230108T023900 will be January 8, 2023, at 2:39 AM
 
+#### File Structure Comments
+1. When implementing Jasmine, running 'npm install' on the terminal lead to the automatic creation of the *node_modules* folder in my directory, which includes a dependency on Jasmine, as well as other dependencies (though I don't believe I have dependencies, besides Jasmine and possibly ANSI-Regex).   
 
 
 
