@@ -76,10 +76,10 @@ describe ('Date Converter', () => {
 
     // Test Case 9: An unusually future, but valid date should be recognized and converted.
     it ('should accept an unusually future, but valid date', () => {
-        const test_date = "21021105T210030"; 
+        const test_date = "31021105T210030"; 
         const result = date_conversion(test_date); 
 
-        expect(result).toBe("November 5, 2102, at 9:00:30 PM"); 
+        expect(result).toBe("November 5, 3102, at 9:00:30 PM"); 
     });
 
     // Test Case 10: A negative date is not acceptable. 
@@ -120,6 +120,28 @@ describe ('Date Converter', () => {
         const result = date_conversion(test_date); 
 
         expect(result).toBe("October 2, 2006, at 11:59:59 PM"); 
+    });
+
+    // Test Case 15: The year 0000 should be accepted, because it is a 4 digit year. 
+    it ('should accept a year that is unusualy, but valid', () => {
+        const test_date = "00000702T043200"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("July 2, 0, at 4:32 AM"); 
+    });
+
+    // Test Case 16: Days or Month cannot be 0. 
+    it ('should not accept 0 for the month or day', () => {
+        const test_date1 = "20140012T112300"; 
+        const result1 = date_conversion(test_date1); 
+
+        expect(result1).toBe("This is an invalid date. "); 
+
+        const test_date2 = "20140100T112300"; 
+        const result2 = date_conversion(test_date2); 
+
+        expect(result2).toBe("This is an invalid date. ");
+
     });
 
 })
