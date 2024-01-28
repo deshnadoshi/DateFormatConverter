@@ -144,5 +144,13 @@ describe ('Date Converter', () => {
 
     });
 
+    // Test Case 17: Midnight should be valid. 
+    it ('should accept a time that is midnight', () => {
+        const test_date = "20031105T000000"; 
+        const result = date_conversion(test_date); 
+
+        expect(result).toBe("November 5, 2003, at 12 AM"); 
+    });
+
 })
 
