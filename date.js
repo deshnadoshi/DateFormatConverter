@@ -400,4 +400,5 @@ module.exports = { date_conversion };
 // Time examples
 // 20031105T255911 = Invalid (hours)
 // 20031105T226011 = Invalid (mins)
-// 20031105T225971 = Invalid (secs) 
+// 20031105T225971 = Invalid (secs)
+// 00000212T112323 = Shoudl be valid (with year 0)
