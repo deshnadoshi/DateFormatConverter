@@ -384,21 +384,4 @@ log_message = "";
 
 module.exports = { date_conversion };
 
-// Example inputs: 
-// Date examples
-// 20031105T225911 = November 5, 2003, at 10:59:11 PM 
-// 20101213T001500 = December 13, 2010, at 12:15 AM 
-// 20101213T000000 = December 13, 2010, at 12 AM
-// 20001913T292300 = Invalid
-// 18981213T000000 = December 13, 1898, at 12 AM (old)
-// 09001213T000000 = December 13, 900, at 12 AM (old)
-// 20230229T225911 = February 29, 2023 at 10:59:11 PM (invalid)
-// 20240229T225911 = February 29, 2024 at 10:59:11 PM 
-// 21021105T225911 = November 5, 2102, at 10:59:11 PM (future)
-// 20230227T120011 = February 27, 2023, at 12:00:11 PM (this might be an issue)  
 
-// Time examples
-// 20031105T255911 = Invalid (hours)
-// 20031105T226011 = Invalid (mins)
-// 20031105T225971 = Invalid (secs)
-// 00000212T112323 = Shoudl be valid (with year 0)
