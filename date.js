@@ -383,5 +383,3 @@ log_message = "";
 
 
 module.exports = { date_conversion };
-
-
