@@ -83,32 +83,38 @@ function check_valid_date(check_date){
 
     // Check for month and day. 
     if (month > 12 || month < 1){
+        console.log("The month is invalid."); 
         log_message = "This is an invalid date. "; 
         is_valid_date = false; 
     }
 
     if (day > 31 || day < 1){ 
+        console.log("The day is invalid."); 
         is_valid_date = false; // Basic check for date range (need to implement check for specific days)
     }
 
 
     if (match_month(year, month, day) == false){
+        console.log("The number of days does not match the month or year."); 
         // Checks if the month matches the month
         is_valid_date = false; 
         log_message = "This is an invalid date. ";
     }
 
     if (hour > 23 || hour < 0){
+        console.log("The hours are invalid."); 
         is_valid_date = false; 
         log_message = "This is an invalid date. "; 
     }
 
     if (min > 59 || min < 0){
+        console.log("The minutes are invalid."); 
         is_valid_date = false; 
         log_message = "This is an invalid date. "; 
     }
 
     if (sec > 59 || sec < 0){
+        console.log("The seconds are invalid."); 
         is_valid_date = false; 
         log_message = "This is an invalid date. "; 
     }
@@ -186,6 +192,7 @@ function check_input_date(check_date){
     }
 
     if (!matched){
+        console.log("Please check that the date/time entered is within the accepted range of value."); 
         log_message = "This is an invalid date. "; 
         console.log(log_message); 
     }
