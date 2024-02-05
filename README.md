@@ -1,4 +1,4 @@
-# ECE452: Software Engineering Assignment 1
+# Date Format Converter
 ### Algorithm Design Description: 
 
 1. Test methods in **date.spec.js** contain comments regarding description of test case. Functions in **date.js** contain comments regarding functionality. 
